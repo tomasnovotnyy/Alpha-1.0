@@ -1,6 +1,6 @@
 # Alpha-1.0
 
-# *Subjects.py*
+# *Třída Subjects.py*
 Tato třída obsahuje seznam předmětů a jejich vlastností.
 
 ## *Metody*
@@ -17,7 +17,7 @@ self.subjects: Seznam obsahující informace o předmětech.
 > - type: Typ předmětu (teorie nebo cvičení).
 > - floor: Patro, kde se výuka daného předmětu koná.
 
-# *Schedule.py*
+# *Třída Schedule.py*
 Tato třída je určena pro práci s rozvrhem. Umožňuje získávat a zobrazovat informace o rozvrhu ve formě textu.
 
 ## *Metody*
@@ -36,7 +36,7 @@ Tato metoda vytváří textový výpis rozvrhu na základě interního rozvrhu. 
 > - Pokud pro danou hodinu nejsou k dispozici informace o předmětu, pouze se vypíše kód předmětu.
 > - Metoda vrací textový řetězec reprezentující rozvrh, přičemž odstraní prázdné řádky na konci výstupu pomocí metody strip().
 
-# *Watchdog.py*
+# *Třída Watchdog.py*
 Třída Watchdog je nástroj pro sledování časového limitu a přerušení provádění procesu po dosažení daného časového intervalu.
 
 Tato třída umožňuje:
