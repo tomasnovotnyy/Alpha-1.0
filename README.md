@@ -1,21 +1,40 @@
 # Alpha-1.0
 
 # *Třída Subjects.py*
-Tato třída obsahuje seznam předmětů a jejich vlastností.
+Třída `Subjects` slouží k načítání informací o předmětech a jejich rozvrhu ze souboru `subjects.json`, který je dostupný pro konfiguraci vlastního rozvrhu.
 
 ## *Metody*
-> __init__(self): Inicializační metoda třídy Subjects, která vytváří seznam předmětů.
+> __init__(self, filename="subjects.json"): Inicializační metoda třídy Subjects, jejíž argument je soubor obsahujícího informace o předmětech.</br> Výchozí hodnota je nastavena na: "subjects.json".
 
-## *Ukázka jednoho uloženého dne*
-![Pondeli_Rozvrh](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/08deca94-e8b7-45df-94ec-b637b5e9a0cb)
+> load_subjects(self): Metoda load_subjects načítá informace o předmětech z JSON souboru. Výchozím názvem souboru pro načtení je `subjects.json`, ale může být specifikován jiný název souboru v konstruktoru třídy.</br>
+> Při spuštění se pokusí načíst informace o předmětech ze souboru `subjects.json`. V případě, že soubor není nalezen, vrátí prázdný seznam a vypíše chybu o chybě souboru.
 
-## *Popis atributu*
-self.subjects: Seznam obsahující informace o předmětech.
-> - code: Název / Kód předmětu.
-> - teacher: Název učitele či lektora daného předmětu.
-> - class: Označení třídy, kde se předmět koná.
-> - type: Typ předmětu (teorie nebo cvičení).
-> - floor: Patro, kde se výuka daného předmětu koná.
+## *Ukázka jednoho uloženého dne v souboru subjects.json*
+![Pondeli_Rozvrh](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/f601298f-cb5c-4538-bb3e-c928221bb0f2)
+
+## *Konfigurace vlastního rozvrhu*
+Třída `Subjects` umožňuje načíst data o předmětech a jejich rozvrhu ze souboru `subjects.json`. Tento soubor musí obsahovat informace o předmětech v následujícím formátu:
+
+```json
+[
+    {
+        "code": "WA",
+        "teacher": "Mgr. Mykyta Narusevych",
+        "classroom": "17b",
+        "type": "practice",
+        "floor": 3
+    },
+    // Další položky
+]
+```
+
+## *Popis atributů*
+- code: Název / Kód předmětu.
+- teacher: Název učitele či lektora daného předmětu.
+- class: Označení třídy, kde se předmět koná.
+- type: Typ předmětu (teorie nebo cvičení).
+- floor: Patro, kde se výuka daného předmětu koná.
+</br></br></br>
 
 # *Třída Schedule.py*
 Tato třída je určena pro práci s rozvrhem. Umožňuje získávat a zobrazovat informace o rozvrhu ve formě textu.
@@ -52,5 +71,5 @@ Tato třída umožňuje:
 > - Funkce inicializuje časový údaj pro sledování uplynutí časového limitu.
 
 > stop(self) -> bool: Zastaví stopky a vrátí informaci, zda byl dosažen timeout.
-> - return: True, pokud uplynul časový limit. False, pokud časový limit ještě neuplynul.
+> - Vrátí True, pokud uplynul časový limit. False, pokud časový limit ještě neuplynul.
 > - Funkce vypočítá uplynulý čas od spuštění stopky a porovná jej s časovým limitem. Vrací True, pokud uplynul časový limit, jinak False.
