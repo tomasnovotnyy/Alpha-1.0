@@ -37,7 +37,7 @@ Třída `Subjects` umožňuje načíst data o předmětech a jejich rozvrhu ze s
 </br></br></br>
 
 # *Třída Schedule.py*
-Tato třída je určena pro práci s rozvrhem. Umožňuje získávat a zobrazovat informace o rozvrhu ve formě textu.
+Tato `Schedule` je určena pro práci s rozvrhem. Umožňuje získávat a zobrazovat informace o rozvrhu ve formě textu.
 
 ## *Metody*
 > __init__(self, schedule): Inicializační metoda třídy Schedule, která vytváří objekt rozvrhu na základě poskytnutého rozvrhového plánu.
@@ -57,7 +57,7 @@ Tato metoda vytváří textový výpis rozvrhu na základě interního rozvrhu. 
 > - Metoda vrací textový řetězec reprezentující rozvrh, přičemž odstraní prázdné řádky na konci výstupu pomocí metody strip().
 
 # *Třída Watchdog.py*
-Třída Watchdog je nástroj pro sledování časového limitu a přerušení provádění procesu po dosažení daného časového intervalu.
+Třída `Watchdog` je nástroj pro sledování časového limitu a přerušení provádění procesu po dosažení daného časového intervalu.
 
 Tato třída umožňuje:
 
@@ -109,3 +109,36 @@ Postup metody:
         - Udržuje seznam použitých předmětů pro každý den a zabrání duplicitám v denním rozvrhu.
         - Pokud je předmět již v seznamu použitých předmětů a nejde o "Volnou hodinu", vrátí jej zpět do seznamu všech předmětů pro další použití.
 3. Ukládání rozvrhu: Ukládá vytvořený rozvrh do sdíleného seznamu.
+
+Již při generování rozvrhů generuji pouze takové rozvrhy, které splňují následující podmínky:
+1. Když je cvičení dvouhodinové, tříhodinové tak ty hodiny musí být u sebe v jednom dni.
+   - To znamená, že pokud by se objevil předmět s ozanečením 'practice' na 10. hodině, tak se vrátí do listu všech možných předmětů pro daný týden a přidá se až když se budou moct obejcit dvě hodiny s označením 'practice' za sebou.
+   - Tím se zajístí to, že se nebudou generovat nesmyslné rozvrhy, které by měli hodiny s označením 'practice' rozházené po celém týdnu náhodně.
+2. Pokud je stejný předmět vícekrát v jeden den a není to vícehodinovka, tak to je špatně.
+   - Ve svém generátoru také hlídám, že pokud by se měl určitý předmět objevit vícekrát v jeden den a zároveň tento předmět není vícehodinovka neboli předmět s označením 'practice', tak se do daného dne vloží pouze jednou. Zamezím tím tak generování dalších zbytečných rozvrhů, které by byly vyhodnoceny jako špatné.
+
+Myslím si, že těmito pravidly zlepším kvalitu generování rozvrhů a zároveň snížím počet nesmyslných a špatných rozvrhů.
+
+
+
+
+
+
+
+# *Třída Evaluator.py*
+Třída `Evaluator` poskytuje funkce pro hodnocení a vyhodnocování rozvrhu na základě nastavených kritérií pro předměty a časové údaje.
+
+## *Metody*
+> __init__(self): Metoda inicializuje instanci třídy `Evaluator` a načítá konfiguraci pro hodnocení rozvrhu z konfiguračního souboru `config.ini`. Tato konfigurace obsahuje kritéria hodnocení pro různé předměty a také obsahuje časová kritéria.
+
+> get_day_of_week(self, day_index): Tato metoda přijímá index dne v týdnu a vrací odpovídající název dne (např. pro index `0` vrátí `"Pondělí"`, pro index `1` vrátí `"Úterý"` atd.).
+
+> evaluate_schedule(self, schedule): Metoda, která hodnotí zadaný rozvrh na základě nastavených kritérií pro předměty a čas. Kritéria hodnocení zahrnují délku trvání předmětů, posloupnost patra učeben, variabilitu učitelů, existence pauz na oběd a maximální délku jednotlivých dnů.</br></br>
+> Při hodnocení rozvrhu tato metoda bere v úvahu následující kritéria:
+> 1. **Rozdíl patra mezi dvěma po sobě jdoucími hodinami**:</br> Podle rozdílu mezi patry dvou po sobě jdoucích hodin se odečítá bodová hodnota 20. Čím větší rozdíl pater, tím větší penalizace bodů.
+> 2. **Přidání bodů na základě délky trvání a kriterií předmětu**:</br> K hodnocení se přičítá délka trvání hodiny pro daný den a váha předmětu.
+> 3. **Odečítání bodů za profilové předměty na začátku nebo na konci dne**:</br> Pokud jsou určité profilové předměty umístěny na začátku nebo na konci dne, odečítá se 100 bodů za každý profilový předmět.
+> 4. **Kontrola, zda jsou pauzy na oběd**:</br> Odečtení bodů, pokud není v určitý časový rámec na daný den zařazena pauza na oběd.
+> 5. **Penalizace za nadměrný počet hodin**:</br> Odečítání bodů za každou hodinu, pokud přesáhne počet hodin daný limit, který je nastaven na 6 hodin denně.
+> 6. **Vaše vlastní pravidlo #1, jeho princip musí být zřejmý z dokumentace**:</br>
+> **Variabilita učitelů**: Hodnotí různorodost učitelů v průběhu jednoho dne s cílem omezit monotónnost.
