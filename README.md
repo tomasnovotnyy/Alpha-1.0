@@ -134,11 +134,12 @@ Třída `Evaluator` poskytuje funkce pro hodnocení a vyhodnocování rozvrhu na
 > get_day_of_week(self, day_index): Tato metoda přijímá index dne v týdnu a vrací odpovídající název dne (např. pro index `0` vrátí `"Pondělí"`, pro index `1` vrátí `"Úterý"` atd.).
 
 > evaluate_schedule(self, schedule): Metoda, která hodnotí zadaný rozvrh na základě nastavených kritérií pro předměty a čas. Kritéria hodnocení zahrnují délku trvání předmětů, posloupnost patra učeben, variabilitu učitelů, existence pauz na oběd a maximální délku jednotlivých dnů.</br></br>
-> Při hodnocení rozvrhu tato metoda bere v úvahu následující kritéria:
-> 1. **Rozdíl patra mezi dvěma po sobě jdoucími hodinami**:</br> Podle rozdílu mezi patry dvou po sobě jdoucích hodin se odečítá bodová hodnota 20. Čím větší rozdíl pater, tím větší penalizace bodů.
-> 2. **Přidání bodů na základě délky trvání a kriterií předmětu**:</br> K hodnocení se přičítá délka trvání hodiny pro daný den a váha předmětu.
-> 3. **Odečítání bodů za profilové předměty na začátku nebo na konci dne**:</br> Pokud jsou určité profilové předměty umístěny na začátku nebo na konci dne, odečítá se 100 bodů za každý profilový předmět.
-> 4. **Kontrola, zda jsou pauzy na oběd**:</br> Odečtení bodů, pokud není v určitý časový rámec na daný den zařazena pauza na oběd.
-> 5. **Penalizace za nadměrný počet hodin**:</br> Odečítání bodů za každou hodinu, pokud přesáhne počet hodin daný limit, který je nastaven na 6 hodin denně.
-> 6. **Vaše vlastní pravidlo #1, jeho princip musí být zřejmý z dokumentace**:</br>
-> **Variabilita učitelů**: Hodnotí různorodost učitelů v průběhu jednoho dne s cílem omezit monotónnost.
+
+Při hodnocení rozvrhu bere metoda `evaluate_schedule(self, schedule)` v úvahu následující kritéria:
+1. **Přidání bodů na základě délky trvání a kriterií předmětu**:</br> K hodnocení se přičítá délka trvání hodiny pro daný den a váha předmětu. Tímto bodem splňuji pravidla 1 a 10. Pro správné hodnocení je potřeba si zvolit své hodnoty jednotlivých předmětů a také si zvolit své hodnoty pro hodiny, kdy se učí v souboru `config.ini`, který se nachází ve `složce Config`. Pokud ale nechcete nic měnit, tak jsou již v souboru `config.ini` přednastavené hodnoty, které tento krok splní za Vás.
+2. **Rozdíl patra mezi dvěma po sobě jdoucími hodinami**:</br> Podle rozdílu mezi patry dvou po sobě jdoucích hodin se odečítá bodová hodnota 20. Čím větší rozdíl pater, tím větší penalizace bodů.
+3. **Kontrola, zda jsou pauzy na oběd**:</br> Odečtení bodů, pokud není v určitý časový rámec na daný den zařazena pauza na oběd.
+4. **Penalizace za nadměrný počet hodin**:</br> Odečítání bodů za každou hodinu, pokud přesáhne počet hodin daný limit, který je nastaven na 6 hodin denně.
+5. **Odečítání bodů za profilové předměty na začátku nebo na konci dne**:</br> Pokud jsou určité profilové předměty umístěny na začátku nebo na konci dne, odečítá se 100 bodů za každý profilový předmět.
+6. **Vaše vlastní pravidlo #1, jeho princip musí být zřejmý z dokumentace**:</br>
+**Variabilita učitelů**: Hodnotí různorodost učitelů v průběhu jednoho dne s cílem omezit monotónnost.
