@@ -207,10 +207,12 @@ Program vypisuje nejlepší tři rozvrhy podle hodnotícího kritéria a statist
 
 # *Testování a zpětná vazba uživatelů*
 ## *Testování programu*
-Program byl podroben testování a zkoušení ze přátel.
+Program byl podroben testování a zkoušení ze strany přátel.
 ## *Zpětná vazba uživatelů*
 Kamarádi, kteří program otestovali, poskytli pozitivní zpětnou vazbu. Zde jsou některé z jejich komentářů:
 </br></br>
 ![Testing (1)](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/1469a1fd-ef00-4ed0-8a21-4dd56b695f35)
 </br>
 ![Testing (2)](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/7bdfe6e9-4b41-4b0a-9326-3cde9a17fef8)
+</br>
+![Test](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/d6df192e-4081-49bc-8b23-7724ea671a4c)
