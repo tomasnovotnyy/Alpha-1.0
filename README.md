@@ -1,4 +1,59 @@
-# Alpha-1.0
+# Alpha-1.0 (Generátor rozvrhů)
+
+# *Popis programu*
+Alpha-1.0 je aplikace napsaná v Pythonu, která umožňuje generovat a hodnotit různé varianty školních rozvrhů na základě určených kritérií. Program využívá paralelního zpracování pro rychlé generování více rozvrhů současně a poté je hodnotí pomocí zadaných kritérií.
+</br>
+
+# *Architektura programu*
+Program se skládá z několika klíčových částí:
+- *Generator*: Modul pro generování různých variant rozvrhů na základě zadaných dat o předmětech.
+- *Evaluator*: Modul pro hodnocení vygenerovaných rozvrhů na základě předem definovaných kritérií.
+- *Watchdog*: Modul pro sledování časového limitu a ukončení generace rozvrhů po uplynutí limitu.
+- *Subjects*: Modul pro načítání dat o předmětech ze souboru subjects.json.
+</br>
+
+# *Konfigurace config.ini*
+Pro konfiguraci hodnot předmětů a časových hodnot pro každý den v týdnu, upravte soubor config.ini následovně:</br>
+### *Předměty*
+- V sekci [SUBJECTS] jsou definovány hodnoty pro jednotlivé předměty. Zde můžete nastavit váhy nebo body pro každý předmět.
+  - Například:
+    ```
+    [SUBJECTS]
+    WA = 30
+    C = 50
+    A = 20
+    ...
+    DS = 80
+    X = 100
+    ```
+  - WA, C, A, atd. jsou zkratky názvů jednotlivých předmětů a jim odpovídající body.
+ 
+### *Časové hodnoty*
+- V sekci [TIME_VALUES] jsou definovány časové hodnoty pro každý den v týdnu.
+  - Hodnoty reprezentují body, které jsou přiřazeny jednotlivým hodinám v daném dni.
+  - Například:
+     ```
+    [TIME_VALUES]
+    MONDAY = -10, 50, 100, 100, 100, 80, 40, 50, -50, -100
+    TUESDAY = 100, 100, 100, 100, 90, 60, 20, 10, -50, -100
+    ...
+    FRIDAY = 100, 100, 100, 90, 60, 20, -10, -50, -100, -200
+    ```
+  - Každý řádek představuje jeden den v týdnu, a hodnoty oddělené čárkou reprezentují hodnoty pro každou hodinu v daném dni.
+
+Uživatel může upravit hodnoty předmětů a časové hodnoty podle potřeby a dle svých preferencí, aby lépe odpovídaly kritériím pro generování a hodnocení rozvrhů.
+</br></br></br>
+
+# *Spuštění programu*
+Pro správné spuštění aplikace je třeba mít nainstalovaný Python (verze 3.6 a vyšší) a je zapotřebí spustit skript Main.py z terminálu.</br>
+## *Spuštění skriptu main.py:*
+1. Spusťte si příkazový řádek.
+2. Pomocí příkazu `cd` se dostaňte ke složce, kde máte uložený projektu.
+3. Následně se ve složce programu přesuňte do složky `Classes`.
+4. Pokud jste již ve složce `Classes`, tak program spustíme následujícím příkazem: `python Main.py`
+
+Program se Vás po správném spuštění skriptu zeptá, zda chcete opravdu program spustit. V případě, že ano, tak Vás požádá o zadání časového limitu pro generování rozvrhů. Tento limit ovlivňuje, jak dlouho bude program generovat rozvrhy, než je vyhodnotí.
+</br></br></br>
 
 # *Třída Subjects.py*
 Třída `Subjects` slouží k načítání informací o předmětech a jejich rozvrhu ze souboru `subjects.json`, který je dostupný pro konfiguraci vlastního rozvrhu.
@@ -55,6 +110,7 @@ Tato metoda vytváří textový výpis rozvrhu na základě interního rozvrhu. 
 > - Druhý for cyklus prochází hodiny v daném dni a vytváří textový řetězec obsahující kódy předmětů.
 > - Pokud pro danou hodinu nejsou k dispozici informace o předmětu, pouze se vypíše kód předmětu.
 > - Metoda vrací textový řetězec reprezentující rozvrh, přičemž odstraní prázdné řádky na konci výstupu pomocí metody strip().
+</br></br></br>
 
 # *Třída Watchdog.py*
 Třída `Watchdog` je nástroj pro sledování časového limitu a přerušení provádění procesu po dosažení daného časového intervalu.
@@ -77,6 +133,7 @@ Tato třída umožňuje:
 > - Funkce vypočítá uplynulý čas od spuštění stopky a porovná jej s časovým limitem. Vrací True, pokud uplynul časový limit, jinak False.
 
 > wait(self): Spustí čekání na timeout a poté ukončí sledované procesy.
+</br></br></br>
 
 # *Třída Generator.py*
 Třída `Generator` slouží k vytvoření náhodného rozvrhu pro daný počet dnů z poskytnutého seznamu předmětů.
@@ -118,12 +175,7 @@ Již při generování rozvrhů generuji pouze takové rozvrhy, které splňují
    - Ve svém generátoru také hlídám, že pokud by se měl určitý předmět objevit vícekrát v jeden den a zároveň tento předmět není vícehodinovka neboli předmět s označením 'practice', tak se do daného dne vloží pouze jednou. Zamezím tím tak generování dalších zbytečných rozvrhů, které by byly vyhodnoceny jako špatné.
 
 Myslím si, že těmito pravidly zlepším kvalitu generování rozvrhů a zároveň snížím počet nesmyslných a špatných rozvrhů.
-
-
-
-
-
-
+</br></br></br>
 
 # *Třída Evaluator.py*
 Třída `Evaluator` poskytuje funkce pro hodnocení a vyhodnocování rozvrhu na základě nastavených kritérií pro předměty a časové údaje.
@@ -143,6 +195,7 @@ Při hodnocení rozvrhu bere metoda `evaluate_schedule(self, schedule)` v úvahu
 5. **Odečítání bodů za profilové předměty na začátku nebo na konci dne**:</br> Pokud jsou určité profilové předměty umístěny na začátku nebo na konci dne, odečítá se 100 bodů za každý profilový předmět.
 6. **Vaše vlastní pravidlo #1, jeho princip musí být zřejmý z dokumentace**:</br>
 **Variabilita učitelů**: Hodnotí různorodost učitelů v průběhu jednoho dne s cílem omezit monotónnost.
+</br></br></br>
 
 # *Třída Main.py*
 Třída `Main` spouští program pro generování a hodnocení rozvrhů na základě zadaných kritérií a časového limitu.
