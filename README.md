@@ -8,11 +8,14 @@ Alpha-1.0 je aplikace napsaná v Pythonu, která umožňuje generovat a hodnotit
 Pro správné spuštění aplikace je třeba mít nainstalovaný Python a je zapotřebí spustit skript Main.py z terminálu.</br>
 ## *Spuštění skriptu main.py:*
 1. Stáhněte si .zip soubor programu do svého PC.
-2. Soubor extrahujte.
-3. Spusťte si příkazový řádek.
-4. Pomocí příkazu `cd` se dostaňte ke složce, kde máte uložený projekt.
-5. Následně se ve složce programu přesuňte do složky `Classes`.
-6. Pokud jste již ve složce `Classes`, tak program spustíte následujícím příkazem: `python Main.py`
+2. Soubor extrahujte. Extrahovaný soubor bude obsahovat 3 následující soubory:
+   - Složka Alpha, kde je uložený celý projekt.
+   - Textový soubor s odkazem na tuto GitHub stránku a s kontaktem na mě.
+   - README.md soubor v Markdown formátu.
+4. Spusťte si příkazový řádek.
+5. Pomocí příkazu `cd` se dostaňte ke složce, kde máte uložený projekt.
+6. Následně se ve složce programu přesuňte do složky `Classes`.
+7. Pokud jste již ve složce `Classes`, tak program spustíte následujícím příkazem: `python Main.py`
 
 Program se Vás po správném spuštění skriptu zeptá, zda chcete opravdu program spustit. V případě, že ano, tak Vás požádá o zadání časového limitu pro generování rozvrhů. Tento limit ovlivňuje, jak dlouho bude program generovat rozvrhy, než je vyhodnotí.
 </br></br>
