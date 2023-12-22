@@ -143,3 +143,14 @@ Při hodnocení rozvrhu bere metoda `evaluate_schedule(self, schedule)` v úvahu
 5. **Odečítání bodů za profilové předměty na začátku nebo na konci dne**:</br> Pokud jsou určité profilové předměty umístěny na začátku nebo na konci dne, odečítá se 100 bodů za každý profilový předmět.
 6. **Vaše vlastní pravidlo #1, jeho princip musí být zřejmý z dokumentace**:</br>
 **Variabilita učitelů**: Hodnotí různorodost učitelů v průběhu jednoho dne s cílem omezit monotónnost.
+
+# *Třída Main.py*
+Třída `Main` spouští program pro generování a hodnocení rozvrhů na základě zadaných kritérií a časového limitu.
+
+Program nejprve dotazuje uživatele, zda chce spustit program. Pokud uživatel potvrdí, program
+žádá o zadání časového limitu pro generování rozvrhů. Poté načte data o předmětech z třídy Subjects,
+inicializuje generátor rozvrhů, evaluator a watchdog, který zajišťuje ukončení generace po uplynutí limitu.
+
+Využívá paralelního zpracování (multiprocessing) pro generování více variant rozvrhů současně,
+aby urychlil proces. Po vypršení časového limitu vyhodnocuje a porovnává vygenerované rozvrhy.
+Program vypisuje nejlepší tři rozvrhy podle hodnotícího kritéria a statistiky ohledně generovaných a ohodnocených rozvrhů.
