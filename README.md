@@ -201,3 +201,13 @@ inicializuje generátor rozvrhů, evaluator a watchdog, který zajišťuje ukon�
 Využívá paralelního zpracování (multiprocessing) pro generování více variant rozvrhů současně,
 aby urychlil proces. Po vypršení časového limitu vyhodnocuje a porovnává vygenerované rozvrhy.
 Program vypisuje nejlepší tři rozvrhy podle hodnotícího kritéria a statistiky ohledně generovaných a ohodnocených rozvrhů.
+
+# *Testování a zpětná vazba uživatelů*
+## *Testování programu*
+Program byl podroben testování a zkoušení ze přátel.
+## *Zpětná vazba uživatelů*
+Kamarádi, kteří program otestovali, poskytli pozitivní zpětnou vazbu. Zde jsou některé z jejich komentářů:
+</br></br>
+![Testing (1)](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/1469a1fd-ef00-4ed0-8a21-4dd56b695f35)
+</br>
+![Testing (2)](https://github.com/tomasnovotnyy/Alpha-1.0/assets/84340580/7bdfe6e9-4b41-4b0a-9326-3cde9a17fef8)
