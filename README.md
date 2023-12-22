@@ -4,13 +4,18 @@
 Alpha-1.0 je aplikace napsaná v Pythonu, která umožňuje generovat a hodnotit různé varianty školních rozvrhů na základě určených kritérií. Program využívá paralelního zpracování pro rychlé generování více rozvrhů současně a poté je hodnotí pomocí zadaných kritérií.
 </br>
 
-# *Architektura programu*
-Program se skládá z několika klíčových částí:
-- *Generator*: Modul pro generování různých variant rozvrhů na základě zadaných dat o předmětech.
-- *Evaluator*: Modul pro hodnocení vygenerovaných rozvrhů na základě předem definovaných kritérií.
-- *Watchdog*: Modul pro sledování časového limitu a ukončení generace rozvrhů po uplynutí limitu.
-- *Subjects*: Modul pro načítání dat o předmětech ze souboru subjects.json.
-</br>
+# *Spuštění programu*
+Pro správné spuštění aplikace je třeba mít nainstalovaný Python a je zapotřebí spustit skript Main.py z terminálu.</br>
+## *Spuštění skriptu main.py:*
+1. Stáhněte si .zip soubor programu do svého PC.
+2. Soubor extrahujte.
+3. Spusťte si příkazový řádek.
+4. Pomocí příkazu `cd` se dostaňte ke složce, kde máte uložený projekt.
+5. Následně se ve složce programu přesuňte do složky `Classes`.
+6. Pokud jste již ve složce `Classes`, tak program spustíte následujícím příkazem: `python Main.py`
+
+Program se Vás po správném spuštění skriptu zeptá, zda chcete opravdu program spustit. V případě, že ano, tak Vás požádá o zadání časového limitu pro generování rozvrhů. Tento limit ovlivňuje, jak dlouho bude program generovat rozvrhy, než je vyhodnotí.
+</br></br>
 
 # *Konfigurace config.ini*
 Pro konfiguraci hodnot předmětů a časových hodnot pro každý den v týdnu, upravte soubor config.ini následovně:</br>
@@ -42,17 +47,6 @@ Pro konfiguraci hodnot předmětů a časových hodnot pro každý den v týdnu,
   - Každý řádek představuje jeden den v týdnu, a hodnoty oddělené čárkou reprezentují hodnoty pro každou hodinu v daném dni.
 
 Uživatel může upravit hodnoty předmětů a časové hodnoty podle potřeby a dle svých preferencí, aby lépe odpovídaly kritériím pro generování a hodnocení rozvrhů.
-</br></br></br>
-
-# *Spuštění programu*
-Pro správné spuštění aplikace je třeba mít nainstalovaný Python (verze 3.6 a vyšší) a je zapotřebí spustit skript Main.py z terminálu.</br>
-## *Spuštění skriptu main.py:*
-1. Spusťte si příkazový řádek.
-2. Pomocí příkazu `cd` se dostaňte ke složce, kde máte uložený projektu.
-3. Následně se ve složce programu přesuňte do složky `Classes`.
-4. Pokud jste již ve složce `Classes`, tak program spustíme následujícím příkazem: `python Main.py`
-
-Program se Vás po správném spuštění skriptu zeptá, zda chcete opravdu program spustit. V případě, že ano, tak Vás požádá o zadání časového limitu pro generování rozvrhů. Tento limit ovlivňuje, jak dlouho bude program generovat rozvrhy, než je vyhodnotí.
 </br></br></br>
 
 # *Třída Subjects.py*
